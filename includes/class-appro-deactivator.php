@@ -18,7 +18,7 @@
  * @since      1.0.0
  * @package    Appro
  * @subpackage Appro/includes
- * @author     Rafael Business <devinvinson@gmail.com>
+ * @author     Rafael Business <contato@rafael.business>
  */
 class Appro_Deactivator {
 

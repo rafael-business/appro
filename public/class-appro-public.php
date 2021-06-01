@@ -18,7 +18,7 @@
  *
  * @package    Appro
  * @subpackage Appro/public
- * @author     Rafael Business <devinvinson@gmail.com>
+ * @author     Rafael Business <contato@rafael.business>
  */
 class Appro_Public {
 
