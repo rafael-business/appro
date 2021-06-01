@@ -1,0 +1,43 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+#appro_archive_page_options .inside {
+    display: flex;
+}
+
+#appro_archive_page_options .inside fieldset.fields {
+    border: 1px solid #c3c4c7;
+    padding: 10px;
+    max-width: 260px;
+    vertical-align: top;
+    flex: 1;
+}
+
+#appro_archive_page_options .inside fieldset.fields:not(:last-child) {
+    margin-right: 10px;
+}
+
+#appro_archive_page_options .inside fieldset.fields legend {
+	font-weight: 700;
+    font-size: 110%;
+    padding: 0 4px;
+}
+
+#appro_archive_page_options .inside fieldset.fields .field {
+	padding: 4px 4px 0;
+	margin-bottom: 10px;
+}
+
+#appro_archive_page_options .inside fieldset.fields .field label {
+ 	display: block;
+ 	font-weight: 600;
+ 	margin-bottom: 4px;
+}
+
+#appro_archive_page_options .inside fieldset.fields .field input[type=text], 
+#appro_archive_page_options .inside fieldset.fields .field select,
+#appro_archive_page_options .inside fieldset.fields .field textarea {
+	width: 100%;
+}
