@@ -1,2 +1,2 @@
 # Archive Pages Pró
-Crie Páginas de Arquivo personalizadas para o seu site WordPress.
+Crie páginas de arquivo personalizadas para o seu site WordPress.
