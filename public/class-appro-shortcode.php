@@ -18,7 +18,7 @@
  *
  * @package    Appro
  * @subpackage Appro/shortcode
- * @author     Rafael Business <contato@rafael.business>
+ * @author     Rafael Business <devinvinson@gmail.com>
  */
 class Appro_Shortcode {
 
@@ -98,7 +98,7 @@ class Appro_Shortcode {
  
 	    if ( is_post_type_archive() ) : 
 	    	
-	    	$where .= $wpdb->prepare( " AND post_date > %s", date( 'Y-m-d', strtotime('-30 days') ) );
+	    	//$where .= $wpdb->prepare( " AND post_date > %s", date( 'Y-m-d', strtotime('-30 days') ) );
 		endif;
 
 	    return $where;

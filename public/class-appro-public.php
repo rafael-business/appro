@@ -18,7 +18,7 @@
  *
  * @package    Appro
  * @subpackage Appro/public
- * @author     Rafael Business <contato@rafael.business>
+ * @author     Rafael Business <devinvinson@gmail.com>
  */
 class Appro_Public {
 
@@ -80,9 +80,12 @@ class Appro_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/appro-public.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'bulma-tooltip', plugin_dir_url( __FILE__ ) . 'css/bulma-tooltip.min.css', array( 'bulma' ) );
 		wp_enqueue_style( 'fullcalendar', plugin_dir_url( __FILE__ ) . 'css/fullcalendar.min.css' );
+		wp_enqueue_style( 'jquery-confirm', plugin_dir_url( __FILE__ ) . 'css/jquery-confirm.min.css' );
+		//wp_enqueue_style( 'tableexport', plugin_dir_url( __FILE__ ) . 'css/tableexport.min.css' );
+
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/appro-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -105,8 +108,13 @@ class Appro_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/appro-public.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'fullcalendar', plugin_dir_url( __FILE__ ) . 'js/fullcalendar.min.js', array(), '5.7.0', false );
+		wp_enqueue_script( 'jquery-confirm', plugin_dir_url( __FILE__ ) . 'js/jquery-confirm.min.js', array( 'jquery' ), '3.3.4', false );
+		//wp_enqueue_script( 'xlsx-core', plugin_dir_url( __FILE__ ) . 'js/xlsx.core.min.js', array(), '0.17.0', false );
+		//wp_enqueue_script( 'FileSaver', plugin_dir_url( __FILE__ ) . 'js/FileSaver.min.js', array(), '1.3.6', false );
+		//wp_enqueue_script( 'tableexport', plugin_dir_url( __FILE__ ) . 'js/tableexport.min.js', array( 'FileSaver' ), '5.2.0', false );
+
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/appro-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

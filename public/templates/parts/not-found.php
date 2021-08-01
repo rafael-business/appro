@@ -1,0 +1,3 @@
+<?php
+
+echo 'sem resultados..';

@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Appro
  * @subpackage Appro/includes
- * @author     Rafael Business <contato@rafael.business>
+ * @author     Rafael Business <devinvinson@gmail.com>
  */
 class Appro {
 

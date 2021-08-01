@@ -7,8 +7,8 @@ $custom_meta 	= $custom_meta && !empty( $custom_meta ) ? explode( ';', $custom_m
 <div class="columns is-multiline is-mobile">
 <?php
 
-while ( have_posts() ) :
-	the_post();
+while ( $query->have_posts() ) :
+	$query->the_post();
 
 	$post_categories = wp_get_post_categories( get_the_ID() );
 	$cats = array();
@@ -50,27 +50,7 @@ while ( have_posts() ) :
 					<dt>
 						<?php _e( $cm_item[1], 'appro' ); ?>
 					</dt>
-					<dd>
-					<?php
-					switch ( $cm_item[2] ) : 
-						case 'post':
-							echo $meta_value['post_title'];
-							break;
-
-						case 'user':
-							echo $meta_value['display_name'];
-							break;
-
-						case 'date':
-							echo date( 'd/m/Y à\s H:i', strtotime( $meta_value ) );
-							break;
-						
-						default:
-							echo $meta_value;
-							break;
-					endswitch;
-					?>
-					</dd>
+					<dd><?= get_display_text( $cm_item[2], $meta_value ); ?></dd>
 				</dl>
 				<?php
 				endforeach;

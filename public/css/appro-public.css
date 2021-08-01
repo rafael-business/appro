@@ -20,7 +20,6 @@ table {
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     overflow: hidden;
-    height: 48px;
 }
 
 .card .content {
@@ -73,4 +72,54 @@ table {
 
 .fc-daygrid-dot-event:hover {
     background: transparent !important;
+}
+
+a.tab-title.has-tooltip-arrow {
+    width: 24px;
+    height: 100%;
+    display: inline-block;
+}
+
+a.tab-title.has-tooltip-arrow.active {
+    border-bottom: 2px solid;
+}
+
+.form-search {
+    position: relative;
+}
+
+.form-search .icon-input-search {
+    position: absolute;
+    z-index: 9000;
+    top: 10px;
+    left: 12px;
+}
+
+.archive-title {
+    display: inline-block;
+}
+
+.icon-archive-title {
+    display: inline-block;
+    margin: 0 16px 0 0;
+    vertical-align: -4px;
+}
+
+.jconfirm.jconfirm-white .jconfirm-bg, .jconfirm.jconfirm-light .jconfirm-bg {
+    background-color: black;
+    opacity: .3;
+}
+
+.filter {
+    display: none;
+}
+
+.form-in-popup ul {
+    list-style: none;
+    margin: 0 0 16px;
+}
+
+.pagination-link.is-current {
+    background-color: #afcf49;
+    border-color: #afcf49;
 }

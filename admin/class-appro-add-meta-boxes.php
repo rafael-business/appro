@@ -211,7 +211,7 @@ class Appro_Add_Meta_Boxes {
                         ?>
                         <option 
                             value="<?php echo esc_attr( $post_type_obj->name ); ?>" 
-                            <?echo $selected; ?> 
+                            <?php echo $selected; ?> 
                         ><?php echo esc_html( $labels->name ); ?></option>
                     <?php 
                     endforeach; 

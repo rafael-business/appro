@@ -35,8 +35,8 @@ $custom_meta 	= $custom_meta && !empty( $custom_meta ) ? explode( ';', $custom_m
 	<tbody>
 <?php
 
-while ( have_posts() ) :
-	the_post();
+while ( $query->have_posts() ) :
+	$query->the_post();
 
 	?>
 		<tr>
@@ -48,7 +48,7 @@ while ( have_posts() ) :
 				switch ( $dt ) {
 					case 'ID':
 						?>
-						<td><?php echo the_ID(); ?></td>
+						<td><a href="<?php echo get_permalink(); ?>"><?php echo the_ID(); ?></a></td>
 						<?php
 						break;
 
@@ -87,23 +87,7 @@ while ( have_posts() ) :
 				$meta_value = get_post_meta( get_the_ID(), $cm_item[0], true );
 				
 			?>
-			<td>
-				<?php
-				switch ( $cm_item[2] ) {
-					case 'post':
-						echo $meta_value['post_title'];
-						break;
-
-					case 'user':
-						echo $meta_value['display_name'];
-						break;
-					
-					default:
-						echo $meta_value;
-						break;
-				}
-				?>
-			</td>
+			<td><?= get_display_text( $cm_item[2], $meta_value ); ?></td>
 			<?php
 			endforeach;
 		endif;
