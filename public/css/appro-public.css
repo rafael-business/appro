@@ -91,7 +91,7 @@ a.tab-title.has-tooltip-arrow.active {
 .form-search .icon-input-search {
     position: absolute;
     z-index: 9000;
-    top: 10px;
+    top: 8px;
     left: 12px;
 }
 
@@ -110,7 +110,9 @@ a.tab-title.has-tooltip-arrow.active {
     opacity: .3;
 }
 
-.filter {
+.filter, 
+.post-add, 
+.order {
     display: none;
 }
 

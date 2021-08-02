@@ -11,12 +11,10 @@ $custom_meta 	= $custom_meta && !empty( $custom_meta ) ? explode( ';', $custom_m
 
 $events = '';
 
-while ( have_posts() ) :
-	the_post();
+while ( $query->have_posts() ) :
+	$query->the_post();
 
-	$start = get_post_meta( get_the_ID(), $start_field, true );
-	//print_r( $start );
-	//$start = $start && !empty( $start ) ? date( 'c', strtotime( implode( '-', array_reverse( explode( '/', $start ) ) ) ) ) : get_the_date( 'c' );
+	$start = $start_field && !empty( $start_field ) ? get_post_meta( get_the_ID(), $start_field, true ) : get_the_date( 'c', get_the_ID() );
 
 	$event = array( 
       'id' 				=> get_the_ID(), 
@@ -31,6 +29,25 @@ while ( have_posts() ) :
 
 endwhile;
 
+$ht_end = array( 
+    'esse_mes' => 'dayGridMonth', 
+    'essa_semana' => 'timeGridWeek', 
+    'hoje' => 'timeGridDay', 
+    'ontem' => 'timeGridDay', 
+    'amanha' => 'timeGridDay' 
+);
+
+$date_en = array( 
+    'esse_mes' => 'this month', 
+    'essa_semana' => 'this week', 
+    'hoje' => 'today', 
+    'ontem' => 'yesterday', 
+    'amanha' => 'tomorrow' 
+);
+
+$vr_start = date( 'Y-m-d', strtotime( $date_en[$date] ) );
+$vr_end = date( 'Y-m-d', strtotime( $date_en[$date] . ' + 1 day' ) );
+
 ?>
 
 <div class="columns is-multiline is-mobile">
@@ -43,9 +60,14 @@ endwhile;
     function getCalendar() {
 
     	var events = [<?php echo $events; ?>];
+        var ht_end = '<?php echo $ht_end[$date]; ?>';
+        var vr_start = '<?php echo $vr_start; ?>';
+        var vr_end = '<?php echo $vr_end; ?>';
         
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: ht_end,
+            initialDate: vr_start,
             locale: 'br', 
             buttonText: {
                 today:    'Hoje', 
@@ -56,12 +78,12 @@ endwhile;
             headerToolbar: { 
                 start: 'title', 
                 center: '', 
-                end: 'today dayGridMonth,timeGridWeek,timeGridDay prev,next' 
+                end: ht_end 
             }, 
             allDaySlot: false, 
             slotMinTime: '00:00:00', 
             slotMaxTime: '23:59:59', 
-            navLinks: 	 true, 
+            navLinks: false, 
             views: {
                 dayGrid: {
                 // options apply to dayGridMonth, dayGridWeek, and dayGridDay views
@@ -77,7 +99,8 @@ endwhile;
                 }
             }, 
             height: 'auto', 
-            events: events, 
+            events: events,
+            showNonCurrentDates: false,
             eventDidMount: function( events ) {
 
 			    var a_event = document.querySelectorAll( '.event-' + events.event.id )[0];

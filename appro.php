@@ -13,7 +13,7 @@
  * @package           Appro
  *
  * @wordpress-plugin
- * Plugin Name:       WP Archive Pages Pró
+ * Plugin Name:       Archive Pages Pró
  * Plugin URI:        https://rafael.work/archive-pages-pro
  * Description:       Crie Páginas de Arquivo personalizadas para o seu site WordPress.
  * Version:           1.0.0
@@ -29,6 +29,15 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+/**
+ * Load plugin textdomain.
+ */
+function appro_load_textdomain() {
+  load_plugin_textdomain( 'appro', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+}
+
+add_action( 'init', 'appro_load_textdomain' );
 
 /**
  * The code that runs during plugin activation.

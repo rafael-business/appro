@@ -1,7 +1,7 @@
 <?php
 get_header(); ?>
 
-	<section id="primary" class="content-area">
+	<section id="primary" class="content-area container px-4 py-4 mt-6">
 		<div id="content" class="site-content" role="main">
 
 			<?php 
@@ -31,13 +31,56 @@ get_header(); ?>
 				$i++;
 			endforeach;
 
+			$date = isset($_POST['data']) ? $_POST['data'] : 'esse_mes';
+
+			$today = getdate();
+
+			$esse_mes = array(
+		        array(
+		            'year'  => $today['year'],
+		            'month' => $today['mon']
+		        )
+		    );
+
+		    $mes_passado = array(
+		        array(
+		            'before' 	=> 'this month',
+		            'after' 	=> 'previous month'
+		        )
+		    );
+
+			$hoje = array(
+		        array(
+		            'year'  => $today['year'],
+		            'month' => $today['mon'],
+		            'day'   => $today['mday']
+		        )
+		    );
+
+		    $ontem = array(
+		        array(
+		            'before'  => 'today',
+		            'after' => 'yesterday'
+		        )
+		    );
+
+		    $amanha = array(
+		        array(
+		            'before'  => 'tomorrow + 1 day',
+		            'after' => 'tomorrow'
+		        )
+		    );
+
+		    $date_query = ${$date};
+
 			$args = array(
 				'post_type' 		=> get_post_type(),
-				'post_status'		=> 'publish',
-				'posts_per_page' 	=> 2,
+				'post_status'		=> array( 'publish', 'future' ),
+				'posts_per_page' 	=> -1,
 				'paged'     		=> $paged,
 				's'					=> $busca,
-				'meta_query'		=> $meta_query
+				'meta_query'		=> $meta_query,
+				'date_query'		=> $date_query
 			);
 
 			$query = new WP_Query( $args );
@@ -53,8 +96,6 @@ get_header(); ?>
 						  <line x1="10" y1="12" x2="14" y2="12" />
 						</svg>
 						<div class="mb-0 archive-title">
-							<span class="has-text-black title is-5"><?php _e( 'Archive', 'appro' ); ?></span>
-							<span class="has-text-grey-lighter title is-5">&nbsp;/&nbsp;</span>
 							<span class="title is-5"><?php _e( post_type_archive_title() ); ?></span>
 						</div>
 						<?php
@@ -102,14 +143,12 @@ get_header(); ?>
 							href="#" 
 							data-tooltip="<?php _e( 'Filter', 'appro' ); ?>" 
 						><img src="<?php echo $filter_icon; ?>" /></a>
-						<!--
 						<a 
 							id="open-order" 
 							class="tab-title has-tooltip-arrow" 
 							href="#" 
 							data-tooltip="<?php _e( 'Order', 'appro' ); ?>" 
 						><img src="<?php echo $order_icon; ?>" /></a>
-						-->
 					</div>
 					
 					<?php
@@ -177,6 +216,8 @@ get_header(); ?>
 				get_bulma_pagination( $query );
 
 				require_once $templates . '/parts/filter.php';
+				require_once $templates . '/parts/add.php';
+				require_once $templates . '/parts/order.php';
 
 			else :
 				
@@ -241,6 +282,9 @@ function get_permission( $id, $layout ){
 
 function get_display_text( $key, $value ){
 
+	$str['future'] 		= __( 'Scheduled', 'appro' );
+	$str['publish'] 	= __( 'Waiting', 'appro' );
+
 	switch ( $key ) : 
 
 		case 'post' : 
@@ -256,11 +300,19 @@ function get_display_text( $key, $value ){
 			break;
 
 		case 'date' : 
-			return date( 'd/m/Y à\s H:i', strtotime( $value ) );
+			return wp_date( get_option( 'date_format' ), $value );
 			break;
 
 		case 'tax' : 
-			return $value['name'];
+			return '<a href="#" class="has-tooltip-arrow" data-tooltip="'. $value[0]->name .'">'. strtoupper($value[0]->slug) .'</a>';
+			break;
+
+		case 'status' : 
+			return $str[$value];
+			break;
+
+		case 'shortcode' : 
+			return do_shortcode( $value );
 			break;
 		
 		default : 

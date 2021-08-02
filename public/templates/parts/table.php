@@ -84,7 +84,22 @@ while ( $query->have_posts() ) :
 			foreach ( $custom_meta as $cm ) : 
 
 				$cm_item = explode( ',', $cm );
-				$meta_value = get_post_meta( get_the_ID(), $cm_item[0], true );
+				if ( 'date' == $cm_item[2] ) {
+
+					$meta_value = get_post_timestamp( get_the_ID() );
+				} elseif ( 'status' == $cm_item[2] ) {
+					
+					$meta_value = get_post_status( get_the_ID() );
+				} elseif ( 'tax' == $cm_item[2] ) {
+					
+					$meta_value = get_the_terms( get_the_ID(), $cm_item[0] );
+				} elseif ( 'shortcode' == $cm_item[2] ) {
+					
+					$meta_value = '['. $cm_item[0] .']';
+				} else {
+
+					$meta_value = get_post_meta( get_the_ID(), $cm_item[0], true );
+				}
 				
 			?>
 			<td><?= get_display_text( $cm_item[2], $meta_value ); ?></td>

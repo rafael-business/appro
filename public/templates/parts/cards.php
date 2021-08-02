@@ -36,7 +36,6 @@ while ( $query->have_posts() ) :
 		  	<a href="<?php echo get_the_permalink(); ?>">
 		  		<h3 class="title is-5 mb-4"><?php echo get_the_title(); ?></h3>
 		  	</a>
-		    <div class="content"><?php echo get_the_excerpt(); ?></div>
 		    <?php
 		    if ( $custom_meta ) : 
 
