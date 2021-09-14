@@ -1,2 +1,2 @@
-# appro
-A demo plugin using the WordPress Plugin Boilerplate
+# Archive Pages Pró
+Um plugin que auxilia na criação de páginas de arquivo no WordPress.
