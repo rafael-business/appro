@@ -38,7 +38,7 @@
 			$.dialog({
 			    title: 'Filtro',
 			    content: filter,
-			    boxWidth: '320px',
+			    boxWidth: '380px',
     			useBootstrap: false
 			});
 		});
@@ -52,7 +52,7 @@
 			$.dialog({
 			    title: 'Ordenação',
 			    content: order,
-			    boxWidth: '320px',
+			    boxWidth: '380px',
     			useBootstrap: false
 			});
 		});
@@ -74,28 +74,40 @@
 
 		});
 
-		$( document ).on( 'change', '#filter_data [name=data]', function( e ) {
-
-			e.preventDefault();
-			$('#filter_data').submit();
-		});
-
 		$( document ).on( 'click', '.add', function( e ) {
 
 			e.preventDefault();
 
-			var title = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><line x1="12" y1="11" x2="12" y2="17" /><line x1="9" y1="14" x2="15" y2="14" /></svg>';
-
-			title += $( '#post-add-title' ).eq(0).val();
+			var title = $( '#post-add-title' ).eq(0).val();
 			var post_add = $( '.post-add' ).eq(0).html();
 			
 			$.dialog({
 			    title: title,
 			    content: post_add,
-			    boxWidth: '320px',
+			    boxWidth: '400px',
+    			useBootstrap: false
+			});
+		});
+
+		$( document ).on( 'click', '#data_filter', function( e ) {
+
+			e.preventDefault();
+
+			var title = $( '#data_filter-title' ).eq(0).val();
+			var content = $( '.data_filter-content' ).eq(0).html();
+			
+			$.dialog({
+			    title: title,
+			    content: content,
+			    boxWidth: '350px',
     			useBootstrap: false
 			});
 		});
 	});
 
 })( jQuery );
+
+// removendo confirmação de POST
+if ( window.history.replaceState ) {
+  //window.history.replaceState( null, null, window.location.href );
+}

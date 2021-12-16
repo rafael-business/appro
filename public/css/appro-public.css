@@ -110,6 +110,7 @@ a.tab-title.has-tooltip-arrow.active {
     opacity: .3;
 }
 
+.data_filter-content, 
 .filter, 
 .post-add, 
 .order {

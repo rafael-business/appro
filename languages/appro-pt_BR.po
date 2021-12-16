@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WP Archive Pages Pró\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-01 01:34+0000\n"
-"PO-Revision-Date: 2021-08-01 20:26+0000\n"
+"PO-Revision-Date: 2021-08-08 01:19+0000\n"
 "Last-Translator: Rafael dos Santos\n"
 "Language-Team: Português do Brasil\n"
 "Language: pt_BR\n"
@@ -48,6 +48,10 @@ msgstr "Adicionar"
 msgid "Add New Archive Page"
 msgstr ""
 
+#: public/templates/parts/data-filter.php:19
+msgid "all"
+msgstr "desde o começo"
+
 #: admin/class-appro-register-post-types.php:65
 msgid "All Archive Pages"
 msgstr ""
@@ -90,11 +94,11 @@ msgstr ""
 msgid "Archive Pages Pró - Options"
 msgstr ""
 
-#: public/templates/archive.php:158
+#: public/templates/archive.php:184
 msgid "Calendar"
 msgstr "Calendário"
 
-#: public/templates/archive.php:157
+#: public/templates/archive.php:183
 msgid "Cards"
 msgstr "Cartões"
 
@@ -114,6 +118,10 @@ msgstr ""
 msgid "Crie Páginas de Arquivo personalizadas para o seu site WordPress."
 msgstr ""
 
+#: public/templates/parts/data-filter.php:20
+msgid "current month"
+msgstr "do mês atual"
+
 #. ID used to identify this section and with which to register options
 #: admin/class-appro-settings.php:143 admin/class-appro-settings.php:232
 msgid "Display Options"
@@ -123,15 +131,7 @@ msgstr ""
 msgid "Edit Archive Page"
 msgstr ""
 
-#: public/templates/parts/add.php:14
-msgid "Exam Date"
-msgstr "Data de realização do exame"
-
-#: public/templates/parts/add.php:10
-msgid "Exam Type"
-msgstr "Tipo de exame"
-
-#: public/templates/archive.php:198
+#: public/templates/archive.php:224
 msgid "Export"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgstr ""
 msgid "Featured Image"
 msgstr ""
 
-#: public/templates/archive.php:144
+#: public/templates/archive.php:170
 msgid "Filter"
 msgstr "Filtrar"
 
@@ -192,6 +192,14 @@ msgstr ""
 msgid "New Archive Page"
 msgstr ""
 
+#: public/templates/parts/data-filter.php:22
+msgid "next month"
+msgstr "do próximo mês"
+
+#: public/templates/parts/data-filter.php:25
+msgid "next week"
+msgstr "da semana que vem"
+
 #: admin/class-appro-register-post-types.php:74
 msgid "Not found"
 msgstr ""
@@ -204,13 +212,17 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#: public/templates/archive.php:150
+#: public/templates/archive.php:176
 msgid "Order"
 msgstr "Ordenar"
 
 #: admin/class-appro-register-post-types.php:64
 msgid "Parent Archive Page:"
 msgstr ""
+
+#: public/templates/parts/data-filter.php:14
+msgid "Period"
+msgstr "Período"
 
 #: admin/class-appro-add-meta-boxes.php:197
 msgid "Post Type"
@@ -225,6 +237,14 @@ msgstr ""
 msgctxt "Post Type Singular Name"
 msgid "Archive Page"
 msgstr "Página de Arquivo"
+
+#: public/templates/parts/data-filter.php:24
+msgid "previous week"
+msgstr "da semana passada"
+
+#: public/templates/parts/data-filter.php:21
+msgid "previus month"
+msgstr "do mês passado"
 
 #: admin/class-appro-settings.php:199
 msgid "Provide the URL to the social networks you'd like to display."
@@ -250,7 +270,7 @@ msgstr ""
 msgid "Roles"
 msgstr ""
 
-#: public/templates/archive.php:285
+#: public/templates/archive.php:312
 msgid "Scheduled"
 msgstr "Agendado"
 
@@ -258,7 +278,7 @@ msgstr "Agendado"
 msgid "Search Archive Page"
 msgstr ""
 
-#: public/templates/archive.php:126
+#: public/templates/archive.php:152
 msgid "Search..."
 msgstr "Buscar..."
 
@@ -278,6 +298,11 @@ msgstr ""
 msgid "Set featured image"
 msgstr ""
 
+#: public/templates/parts/data-filter.php:17
+#, php-format
+msgid "Show %s "
+msgstr "Mostrar %s "
+
 #. ID used to identify this section and with which to register options
 #: admin/class-appro-settings.php:144 admin/class-appro-settings.php:295
 msgid "Social Options"
@@ -291,13 +316,25 @@ msgstr ""
 msgid "Start field"
 msgstr ""
 
-#: public/templates/archive.php:156
+#: public/templates/archive.php:182
 msgid "Table"
 msgstr "Tabela"
 
 #: admin/class-appro-settings.php:364
 msgid "Textarea Element"
 msgstr ""
+
+#: public/templates/parts/data-filter.php:23
+msgid "this week"
+msgstr "dessa semana"
+
+#: public/templates/parts/data-filter.php:26
+msgid "today"
+msgstr "de hoje"
+
+#: public/templates/parts/data-filter.php:28
+msgid "tomorrow"
+msgstr "de amanhã"
 
 #: admin/class-appro-register-post-types.php:70
 msgid "Update Archive Page"
@@ -319,6 +356,10 @@ msgstr ""
 msgid "View Archive Pages"
 msgstr ""
 
-#: public/templates/archive.php:286
+#: public/templates/archive.php:313
 msgid "Waiting"
 msgstr "Aguardando"
+
+#: public/templates/parts/data-filter.php:27
+msgid "yesterday"
+msgstr "de ontem"

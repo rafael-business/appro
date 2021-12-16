@@ -13,17 +13,17 @@ get_header(); ?>
 			$layouts 	= array_keys( $layouts );
 
 			// Query
-			$has_busca = isset( $_GET['s'] ) ? true : false;
-			$busca = $has_busca ? $_GET['s'] : '';
+			$has_busca = isset( $_GET['busca'] ) ? true : false;
+			$busca = $has_busca ? $_GET['busca'] : '';
 			$gets = isset( $_GET ) ? $_GET : null;
-			unset( $gets['busca'] );
 			$meta_query = array();
-			$i = 0;
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			$date = $gets && isset( $gets['data'] ) ? $gets['data'] : 'esse_mes';
 
+			$i = 0;
 			foreach ( $gets as $key => $value ) : 
 				
-				if ( !$value ) continue;
+				if ( !$value || 'data' === $key ) continue;
 				
 				$meta_query[$i]['key'] = $key;
 				$meta_query[$i]['value'] = $value;
@@ -31,29 +31,52 @@ get_header(); ?>
 				$i++;
 			endforeach;
 
-			$date = isset($_POST['data']) ? $_POST['data'] : 'esse_mes';
-
-			$today = getdate();
-
 			$esse_mes = array(
 		        array(
-		            'year'  => $today['year'],
-		            'month' => $today['mon']
+		            'before' 	=> 'first day of next month midnight',
+		            'after' 	=> 'first day of this month midnight'
 		        )
 		    );
 
 		    $mes_passado = array(
 		        array(
-		            'before' 	=> 'this month',
-		            'after' 	=> 'previous month'
+		            'before' 	=> 'first day of this month midnight',
+		            'after' 	=> 'first day of previous month midnight'
+		        )
+		    );
+
+		    $proximo_mes = array(
+		        array(
+		            'before' 	=> 'first day of next month +1 month midnight',
+		            'after' 	=> 'first day of next month midnight'
+		        )
+		    );
+
+		    $essa_semana = array(
+		        array(
+		            'before' 	=> 'next week midnight',
+		            'after' 	=> 'this week midnight'
+		        )
+		    );
+
+		    $semana_passada = array(
+		        array(
+		            'before' 	=> 'this week midnight',
+		            'after' 	=> 'previous week midnight'
+		        )
+		    );
+
+		    $semana_que_vem = array(
+		        array(
+		            'before' 	=> 'next week +1 week midnight',
+		            'after' 	=> 'next week midnight'
 		        )
 		    );
 
 			$hoje = array(
 		        array(
-		            'year'  => $today['year'],
-		            'month' => $today['mon'],
-		            'day'   => $today['mday']
+		            'before' 	=> 'tomorrow',
+		            'after' 	=> 'today'
 		        )
 		    );
 
@@ -99,10 +122,10 @@ get_header(); ?>
 							<span class="title is-5"><?php _e( post_type_archive_title() ); ?></span>
 						</div>
 						<?php
-						if ( isset( $_GET['s'] ) && !empty( $_GET['s'] ) ) : 
+						if ( isset( $_GET['busca'] ) && !empty( $_GET['busca'] ) ) : 
 						?>
 						<div class="tags has-addons mt-1">
-							<span class="tag is-link is-light"><?php echo isset( $_GET['s'] ) ? $_GET['s'] : ''; ?></span>
+							<span class="tag is-link is-light"><?php echo isset( $_GET['busca'] ) ? $_GET['busca'] : ''; ?></span>
 							<a href="<?php echo get_post_type_archive_link( get_post_type() ); ?>" class="tag is-delete is-danger is-light"></a>
 						</div>
 						<?php
@@ -122,9 +145,9 @@ get_header(); ?>
 							</svg>
 							<input 
 								type="search" 
-								name="s" 
+								name="busca" 
 								placeholder="<?php _e( 'Search...', 'appro' ) ?>" 
-								value="<?php echo isset( $_GET['s'] ) ? $_GET['s'] : ''; ?>" 
+								value="<?php echo isset( $_GET['busca'] ) ? $_GET['busca'] : ''; ?>" 
 								class="input pl-6" 
 							/>
 						</form>
@@ -216,7 +239,6 @@ get_header(); ?>
 				get_bulma_pagination( $query );
 
 				require_once $templates . '/parts/filter.php';
-				require_once $templates . '/parts/add.php';
 				require_once $templates . '/parts/order.php';
 
 			else :
@@ -224,6 +246,8 @@ get_header(); ?>
 				require_once $templates . '/parts/not-found.php';
 
 			endif;
+			require_once $templates . '/parts/data-filter.php';
+			require_once $templates . '/parts/add.php';
 			?>
 		</div><!-- #content -->
 	</section><!-- #primary -->
@@ -362,6 +386,12 @@ function get_bulma_pagination( $query ) {
     </nav>
     <?php
 	endif;
+}
+
+function choose( $value ) {
+
+	$date = isset( $_GET['data'] ) ? $_GET['data'] : 'esse_mes';
+	return $value == $date ? 'selected' : '';
 }
 
 get_footer();
