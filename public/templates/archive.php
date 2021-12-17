@@ -31,6 +31,8 @@ get_header(); ?>
 				$i++;
 			endforeach;
 
+			$todos = '';
+
 			$esse_mes = array(
 		        array(
 		            'before' 	=> 'first day of next month midnight',
@@ -333,10 +335,6 @@ function get_display_text( $key, $value ){
 
 		case 'status' : 
 			return $str[$value];
-			break;
-
-		case 'shortcode' : 
-			return do_shortcode( $value );
 			break;
 		
 		default : 
