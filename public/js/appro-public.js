@@ -103,6 +103,37 @@
     			useBootstrap: false
 			});
 		});
+
+		$( document ).on( 'click', '.btn-next', function( e ) {
+
+			e.preventDefault();
+
+			$(this).closest('.step-group').hide();
+			$(this).closest('.step-group').next('.step-group').show();
+			
+			$('.btn-next').prop('disabled', true);
+		});
+
+		$( document ).on( 'click', '.btn-previous', function( e ) {
+
+			e.preventDefault();
+
+			$(this).closest('.step-group').hide();
+			$(this).closest('.step-group').prev('.step-group').show();
+			$('.btn-next').prop('disabled', false);
+		});
+
+		$( document ).on( 'change', '.search_type input[name="type"]', function( e ) {
+
+			e.preventDefault();
+			$('.btn-next').prop('disabled', false);
+		});
+
+		$( document ).on( 'change', '#add-ex-step-2 input[name="publish_date"]', function( e ) {
+
+			e.preventDefault();
+			$('.btn-next').prop('disabled', false);
+		});
 	});
 
 })( jQuery );

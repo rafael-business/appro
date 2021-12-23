@@ -121,8 +121,3 @@ a.tab-title.has-tooltip-arrow.active {
     list-style: none;
     margin: 0 0 16px;
 }
-
-.pagination-link.is-current {
-    background-color: #afcf49;
-    border-color: #afcf49;
-}

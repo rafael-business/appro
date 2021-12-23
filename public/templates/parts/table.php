@@ -8,7 +8,9 @@ $custom_meta 	= $custom_meta && !empty( $custom_meta ) ? explode( ';', $custom_m
 
 $table_body = array();
 
-while ( /*$query->have_posts()*/ false ) :
+$vs = isset( $_GET['vs'] ) ? $_GET['vs'] : 2;
+if ( 2 === $vs ) : 
+while ( $query->have_posts() ) :
 
 	$id = get_the_ID();
 	
@@ -66,28 +68,30 @@ while ( /*$query->have_posts()*/ false ) :
 	endif;
 
 endwhile;
+else : 
 
-require_once( 'old-system.php' );
+	require_once( 'old-system.php' );
 
-foreach ( $entries as $entry ) : 
+	foreach ( $entries as $entry ) : 
 
-	$id = $entry['id'];
-
-	//$table_body[$id]['ID'] = $id;	
-	$table_body[$id]['type'] = $entry[21];	
-	$table_body[$id]['nome_paciente'] = $entry[6];
-	//$table_body[$id]['date'] = get_display_text( 'date', strtotime( $entry[7] ) );
-	$table_body[$id]['actions'] = 'actions-exame';
-	$table_body[$id]['status'] = $entry[23];
-	$table_body[$id]['url_exame'] = $entry[22];
-endforeach;
-
-//echo '<code>';
-//print_r( $table_body );
-//echo '</code>';
+		$id = $entry['id'];
+	
+		//$table_body[$id]['ID'] = $id;	
+		$table_body[$id]['type'] = $entry[21];	
+		$table_body[$id]['nome_paciente'] = $entry[6];
+		//$table_body[$id]['date'] = get_display_text( 'date', strtotime( $entry[7] ) );
+		$table_body[$id]['actions'] = 'actions-exame';
+		$table_body[$id]['status'] = $entry[23];
+		$table_body[$id]['url_exame'] = $entry[22];
+	endforeach;
+	
+	//echo '<code>';
+	//print_r( $table_body );
+	//echo '</code>';
+endif;
 
 ?>
-<table class="table is-striped is-hoverable is-fullwidth">
+<table class="table is-striped is-hoverable is-fullwidth mb-0">
 	<thead>
 		<tr>
 			<?php
@@ -152,4 +156,18 @@ endif;
 	?>
 	</tbody>
 </table>
+<hr style="margin: 0;" />
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+	<ul class="pagination-list">
+		<?php
+		global $wp;
+		$current_url = home_url( add_query_arg( array(), $wp->request ) ) . '?vs=1s';
+		for ( $i = 1; $i <= $total_pages; $i++ ) : 
+	
+			$active = ( !isset( $_GET['pagina'] ) && 1 === $i ) || ( isset( $_GET['pagina'] ) && $i == $_GET['pagina'] ) ? 'is-current' : '';
+			echo '<li><a class="pagination-link '. $active .'" href="'. $current_url .'&pagina='. $i .'">'. $i .'</a></li>';
+		endfor;
+		?>
+	</ul>
+</nav>
 <?php

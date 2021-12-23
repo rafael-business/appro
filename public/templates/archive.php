@@ -23,7 +23,7 @@ get_header(); ?>
 			$i = 0;
 			foreach ( $gets as $key => $value ) : 
 				
-				if ( !$value || 'data' === $key ) continue;
+				if ( !$value || 'data' === $key || 'vs' === $key ) continue;
 				
 				$meta_query[$i]['key'] = $key;
 				$meta_query[$i]['value'] = $value;
@@ -110,7 +110,7 @@ get_header(); ?>
 
 			$query = new WP_Query( $args );
 
-			if ( $query->have_posts() ) : ?>
+			if ( $query->have_posts() || 1 == $_GET['vs'] ) : ?>
 
 				<div class="columns">
 					<header class="column page-header">
@@ -145,6 +145,13 @@ get_header(); ?>
 							  <path d="M4 12h4" />
 							  <path d="M4 18h4" />
 							</svg>
+							<input type="hidden" name="vs" value="1">
+							<?php
+							if ( isset( $_GET['data'] ) ) : ?>
+							<input type="hidden" name="data" value="<?= $_GET['data'] ?>">
+							<?php
+							endif;
+							?>
 							<input 
 								type="search" 
 								name="busca" 

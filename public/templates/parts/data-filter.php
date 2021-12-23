@@ -21,6 +21,13 @@ $pt = strtolower( $post_type_obj->labels->name );
 			<option value="ontem" <?= choose( 'ontem' ) ?>><?php _e( 'yesterday', 'appro' ); ?></option>
 			<option value="amanha" <?= choose( 'amanha' ) ?>><?php _e( 'tomorrow', 'appro' ); ?></option>
 		</select>
+		<input type="hidden" name="vs" value="1">
+		<?php
+		if ( isset( $_GET['busca'] ) ) : ?>
+		<input type="hidden" name="busca" value="<?= $_GET['busca'] ?>">
+		<?php
+		endif;
+		?>
 		<button class="button is-link is-fullwidth py-5">
 			<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-filter" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
 			  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
